@@ -48,21 +48,9 @@ def getSiteInfo(site):
 	links = getLinks(bs)
 	return (topic, links)
 
-def visit(site):
 
-	toVisit = []
-	p,d,path,r = parseURL(site)
-	topic, links = getSiteInfo(site)
-	print(topic)
-	toVisit += links
-	print(len(links))
-	for link in toVisit:
-		print(link,end= " ")
-		newURL = buildURL(p,d,path, link)
-		print(newURL)
-		#topic = getTopic(newURL)
-		#print(topic)
-		#time.sleep(1)
-	return topic
+def get_first_link(bs):
+    content_div = bs.find(id="mw-content-text").find(class_="mw-parser-output")
 
-visit("http://en.wikipedia.org/wiki/Coe_College")
+
+
