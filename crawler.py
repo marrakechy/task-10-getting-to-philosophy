@@ -51,6 +51,12 @@ def getSiteInfo(site):
 
 def get_first_link(bs):
     content_div = bs.find(id="mw-content-text").find(class_="mw-parser-output")
+	#find the first link in the main body of the article
+	for element in content_div.find_all("p", recursive=False):
+		if element.find("a", recursive=False):
+			return element.find("a", recursive=False).get('href')
+	return None
+
 
 
 
