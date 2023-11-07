@@ -63,6 +63,16 @@ def follow_to_philosophy(start_topic):
 	visited_topics = set()  # keeping track of visited topics
 	current_topic = start_topic
 	p, d, path, _ = parseURL('http://en.wikipedia.org/wiki/' + current_topic)
+	while current_topic.lower() != "philosophy":
+		print(current_topic)
+		site = buildURL(p, d, path, current_topic)
+		result = requests.get(site)
+		bs = BeautifulSoup(result.text, "html.parser")
+
+		if current_topic in visited_topics:
+			print("loop detected, stopping.")
+			return
+		visited_topics.add(current_topic)
 
 
 
